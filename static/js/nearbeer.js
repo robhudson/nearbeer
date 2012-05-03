@@ -1,9 +1,16 @@
+$(function(){
+
 $.getCurrentPosition(
     function(pos){
     // success
-        alert('GOT IT: ' + pos.coords.latitude + ', ' + pos.coords.longitude);
+        $('#beers').load('/beers/' +
+                         pos.coords.latitude + ',' +
+                         pos.coords.longitude);
     },
     function(e){
+    // fail
         alert('FAIL :( ' + e.message);
     }
 );
+
+});
