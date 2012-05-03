@@ -3,13 +3,13 @@ $(function(){
 $.getCurrentPosition(
     function(pos){
     // success
-        $('#beers').load('/beers/' +
+/*        $('#beers').load('/beers/' +
                          pos.coords.latitude + ',' +
-                         pos.coords.longitude);
+                         pos.coords.longitude);*/
     },
     function(e){
     // fail
-        alert('FAIL :( ' + e.message);
+        //alert('FAIL :( ' + e.message);
     }
 );
 
