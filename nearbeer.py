@@ -18,7 +18,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return render_template('home.html')
+    return render_template('home.html', **{
+        'tops': [top_1, top_2, top_3],
+    })
 
 
 def _get_top(brewery_ids, exclude=None):
@@ -31,7 +33,7 @@ def _get_top(brewery_ids, exclude=None):
     beers = {}
     bids = [bid for bid in brewery_ids if bid not in exclude]
     for bid in brewery_ids:
-        res = API.brewery_info.get(key=KEY, brewery_id=bid)
+        res = API.brewery_info.get(key=UNTAPPD_KEY, brewery_id=bid)
         for beer in res['results']['top_beers']:
             beers[beer['beer_id']] = {}
 
@@ -39,7 +41,7 @@ def _get_top(brewery_ids, exclude=None):
     cnt = 0
     top_beer = None
     for bid in beers:
-        res = API.beer_info.get(key=KEY, bid=bid)
+        res = API.beer_info.get(key=UNTAPPD_KEY, bid=bid)
         weekly_count = int(res['results']['weekly_count'])
         beers[bid]['weekly_count'] = weekly_count
         if weekly_count > cnt:
@@ -50,4 +52,4 @@ def _get_top(brewery_ids, exclude=None):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

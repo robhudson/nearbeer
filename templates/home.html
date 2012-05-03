@@ -55,6 +55,9 @@
     <div class="container">
 
     <ul id="beers">
+    {% for beer in tops %}
+      {% include 'beer.html' %}
+    {% endfor %}
     </ul>
 
     </div> <!-- /container -->
