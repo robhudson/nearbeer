@@ -13,6 +13,12 @@ client = foursquare.Foursquare(client_id=FSQ_CLIENT_ID,
                                client_secret=FSQ_CLIENT_SECRET)
 
 
+def brewery_names_near(ll):
+    """ Return a list of  """
+    venues = venues_near(ll)
+    return [b['name'] for b in venues]
+
+
 def venues_near(ll):
     """
     ll = comma separated lat,long. e.g. '36.962452,-122.02446'
@@ -21,4 +27,4 @@ def venues_near(ll):
         'll': ll,
         'categoryId': ','.join(FSQ_CATEGORIES),
         'radius': 8000,
-    })
+    })['venues']
