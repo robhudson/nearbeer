@@ -1,0 +1,3 @@
+Flask==0.8
+foursquare==20120430
+slumber==0.4.2
