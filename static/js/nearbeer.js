@@ -2,10 +2,10 @@ $(function(){
 
 $.getCurrentPosition(
     function(pos){
-    // success
-/*        $('#beers').load('/beers/' +
+        // success
+        $('#beers').load('/beers/' +
                          pos.coords.latitude + ',' +
-                         pos.coords.longitude);*/
+                         pos.coords.longitude);
     },
     function(e){
     // fail

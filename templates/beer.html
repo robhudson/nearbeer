@@ -1,13 +1,18 @@
+{% for b in breweries %}
 <li>
   <div class="row">
-    <h5 class="label">{{ beer.category }}</h5>
     <div class="span2">
-      <img src="{{ beer.img }}">
+      <img src="{{ b.brewery_stamp }}">
     </div>
     <div class="span5">
-      <h1>{{ beer.name }}</h1>
-      <h2>{{ beer.type }}</h2>
-      <h2>{{ beer.brewery }}</h2>
+      <h1>{{ b.brewery_name }}</h1>
+      <h3 class="label">TOP BEERS</h3>
+      <ul>
+        {% for beer in b.top_beers %}
+          <li><h3>{{ beer.beer_name }} ({{ beer.beer_type }})</h3></li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </li>
+{% endfor %}

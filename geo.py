@@ -9,9 +9,6 @@ FSQ_CATEGORIES = [
     '4bf58dd8d48988d1d7941735', # Breweries
 ]
 
-client = foursquare.Foursquare(client_id=FSQ_CLIENT_ID,
-                               client_secret=FSQ_CLIENT_SECRET)
-
 
 def brewery_names_near(ll):
     """ Return a list of  """
@@ -23,6 +20,9 @@ def venues_near(ll):
     """
     ll = comma separated lat,long. e.g. '36.962452,-122.02446'
     """
+    client = foursquare.Foursquare(client_id=FSQ_CLIENT_ID,
+                                   client_secret=FSQ_CLIENT_SECRET)
+
     return client.venues.search(params={
         'll': ll,
         'categoryId': ','.join(FSQ_CATEGORIES),
