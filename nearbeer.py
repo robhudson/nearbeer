@@ -1,6 +1,7 @@
+import json
 import os
 
-from flask import Flask, render_template
+from flask import Flask, make_response, render_template
 import slumber
 
 
@@ -24,6 +25,25 @@ def beers(ll):
     vens = venues_near(ll)
     breweries = get_breweries(vens[:MAX_BREWERIES])
     return render_template('beer.html', breweries=breweries)
+
+
+@app.route('/manifest.webapp')
+def manifest():
+    data = {
+        'name': 'Near Beer',
+        'description': 'Find good beer near you.',
+        'developer': {
+            'name': '',
+            'url': '',
+        },
+        'icons': {
+        },
+        'locales': {},
+        'default_locale': 'en-US'
+    }
+    resp = make_response(json.dumps(data))
+    resp.headers['mimetype'] = 'application/x-web-app-manifest+json'
+    return resp
 
 
 def get_breweries(venues):
